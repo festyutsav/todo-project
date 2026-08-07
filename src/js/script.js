@@ -1,6 +1,4 @@
-// =======================================
-// Select Elements
-// =======================================
+
 
 const STORAGE_KEY = 'todoAppTasks';
 const PRIORITIES = ['High', 'Medium', 'Low'];
@@ -35,9 +33,6 @@ let hasCelebratedCurrentCycle = false;
 const toastQueue = [];
 let activeToast = null;
 
-// =======================================
-// Events
-// =======================================
 
 taskForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -91,9 +86,7 @@ filterButtons.forEach((filterButton) => {
     });
 });
 
-// =======================================
-// Local Storage
-// =======================================
+
 
 function getStoredTasks() {
     try {
@@ -123,9 +116,7 @@ function loadTasks() {
     applyTaskFilters(false);
 }
 
-// =======================================
-// Create Task
-// =======================================
+
 
 function createTaskItem(task, shouldAnimate = true) {
     const taskItem = document.createElement('li');
@@ -182,9 +173,6 @@ function createTaskItem(task, shouldAnimate = true) {
 
 }
 
-// =======================================
-// Completion Celebration
-// =======================================
 
 function areAllTasksCompleted() {
     const taskItems = Array.from(taskList.children);
@@ -218,7 +206,7 @@ function celebrateAllTasksCompleted(taskItem) {
         showCelebrationMessage();
     };
 
-    // The final card receives a short reward pulse before the page-level celebration begins.
+    
     if (motionAllowed && gsap) {
         gsap.timeline()
             .to(taskItem, { scale: 1.035, duration: 0.2, ease: 'power2.out' })
@@ -243,7 +231,7 @@ function playSuccessSound() {
         const gain = successAudioContext.createGain();
         const startTime = successAudioContext.currentTime;
 
-        // This is created from the completion click, satisfying modern browser autoplay policies.
+    
         successAudioContext.resume();
         oscillator.type = 'sine';
         oscillator.frequency.setValueAtTime(659.25, startTime);
@@ -257,7 +245,7 @@ function playSuccessSound() {
         oscillator.start(startTime);
         oscillator.stop(startTime + 0.21);
     } catch (error) {
-        // Audio is optional: browsers that block it still receive the visual celebration.
+        
     }
 }
 
@@ -331,7 +319,6 @@ function showCelebrationMessage() {
 }
 
 function getTaskPriority(priority) {
-    // Older saved tasks did not have a priority, so they retain the new Medium default on load.
     return PRIORITIES.includes(priority) ? priority : 'Medium';
 }
 
@@ -403,9 +390,7 @@ function updateTaskPriority(taskItem, priority) {
     saveTasks();
 }
 
-// =======================================
-// Edit Task
-// =======================================
+
 
 function createTaskButton(label, className, ariaLabel) {
     const button = document.createElement('button');
@@ -447,7 +432,7 @@ function startTaskEdit(taskItem) {
     editInput.focus();
     editInput.select();
 
-    // Keep the edit transition restrained so it complements the existing card motion.
+    
     if (motionAllowed && gsap) {
         gsap.fromTo([editInput, taskActions],
             { opacity: 0, y: 6 },
@@ -512,7 +497,7 @@ function saveTaskEdit(taskItem) {
 }
 
 function cancelTaskEdit(taskItem, shouldAnimate = true) {
-    // The stored value is the original text until a valid save is completed.
+    
     finishTaskEdit(taskItem, taskItem.dataset.taskText, shouldAnimate);
 }
 
@@ -579,9 +564,6 @@ function deleteTask(taskItem) {
     }
 }
 
-// =======================================
-// Add Task
-// =======================================
 
 function addTask() {
     const taskText = taskInput.value.trim();
@@ -609,9 +591,7 @@ function addTask() {
     showToast('Task added', '✓');
 }
 
-// =======================================
-// Sort Tasks
-// =======================================
+
 
 function sortTasksByPriority() {
     const taskItems = Array.from(taskList.children);
@@ -624,7 +604,7 @@ function sortTasksByPriority() {
         return firstRank - secondRank;
     });
 
-    // Appending existing nodes preserves every task's listeners, completion state, and edit state.
+    
     taskList.append(...sortedTaskItems);
     saveTasks();
 
@@ -643,9 +623,7 @@ function sortTasksByPriority() {
     }
 }
 
-// =======================================
-// Search And Filters
-// =======================================
+
 
 function applyTaskFilters(shouldAnimate = true) {
     const searchQuery = taskSearch.value.trim().toLowerCase();
@@ -710,7 +688,7 @@ function setTaskVisibility(taskItem, shouldShow, shouldAnimate) {
     const isHidden = taskItem.classList.contains('is-filtered-out');
     const canAnimate = shouldAnimate && motionAllowed && gsap;
 
-    // Cancel an in-flight visibility animation before applying a newer search/filter result.
+    
     if (canAnimate) {
         gsap.killTweensOf(taskItem);
 
@@ -764,9 +742,6 @@ function setEmptyStateVisibility(shouldShow, shouldAnimate) {
     }
 }
 
-// =======================================
-// Toast Notifications
-// =======================================
 
 function showToast(message, icon) {
     toastQueue.push({ message, icon });
