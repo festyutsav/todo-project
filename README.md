@@ -8,13 +8,25 @@ I created this project to strengthen my frontend fundamentals without relying on
 
 ## Live Demo
 
-Coming soon
+https://todo-project-inky-one.vercel.app/
 
 ---
 
-## Preview
+## 🎥 Demo
 
-> Screenshots and demo GIF will be added after deployment.
+![Demo GIF](assets/todo-demo.gif)
+
+*Full Demo Video:* [todo-demo.mp4](assets/todo-demo.mp4)
+
+---
+
+## 📸 Screenshots
+
+### Desktop
+![Desktop Preview](assets/desktop-preview.png)
+
+### Mobile
+![Mobile Preview](assets/mobile-preview.png)
 
 ---
 
