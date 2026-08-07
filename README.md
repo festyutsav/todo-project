@@ -22,11 +22,9 @@ https://todo-project-inky-one.vercel.app/
 
 ## 📸 Screenshots
 
-### Desktop
-![Desktop Preview](assets/desktop-preview.png)
-
-### Mobile
-![Mobile Preview](assets/mobile-preview.png)
+| Desktop | Mobile |
+|---------|--------|
+| <img src="assets/desktop-preview.png" width="700"> | <img src="assets/mobile-preview.png" width="220"> |
 
 ---
 
